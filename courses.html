@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="courses-container">
+    <h2>Courses</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Enroll Form -->
+    <div class="enroll-section">
+        <h3>Enroll in a Course</h3>
+        <form method="POST">
+            <label for="course">Select a Course:</label>
+            <select id="course" name="course">
+                {% for course in courses %}
+                    <option value="{{ course.title }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-submit">Enroll</button>
+        </form>
+    </div>
+
+    <!-- User Created Courses -->
+    <div class="user-courses">
+        <h3>Your Created Courses</h3>
+        <div class="course-card-container">
+        {% for course in user_courses %}
+            <div class="course-card">
+                <h4>{{ course[1] }}</h4>
+                <p><strong>Description:</strong> {{ course[2] }}</p>
+                <p><strong>Schedule:</strong> {{ course[3] }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
