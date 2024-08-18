@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="resources-container">
+    <h2>Shared Resources</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Upload Form -->
+    <div class="upload-section">
+        <h3>Upload New Resource</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit" class="btn-upload">Upload Resource</button>
+        </form>
+    </div>
+
+    <!-- Resources List -->
+    <div class="resources-list">
+        <h3>Available Resources</h3>
+        <div class="resource-card-container">
+        {% for log in resource_logs %}
+            <div class="resource-card">
+                <h4>{{ log.filename }}</h4>
+                <p><strong>Uploaded by:</strong> {{ log.username }}</p>
+                <p><strong>Upload Date:</strong> {{ log.timestamp }}</p>
+                <a href="{{ url_for('download_file', filename=log.filename) }}" class="btn-download">Download</a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
