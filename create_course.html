@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h2>Create New Course</h2>
+    <form method="POST">
+        <label for="title">Course Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="schedule">Schedule:</label>
+        <input type="date" id="schedule" name="schedule" required>
+        <button type="submit" class="btn-submit">Create Course</button>
+    </form>
+</div>
+{% endblock %}
