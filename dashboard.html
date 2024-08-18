@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+    <h1>Welcome, {{ username }}!</h1>
+    <div class="dashboard-actions">
+        <a href="{{ url_for('create_course') }}" class="btn-action">Create New Course</a>
+        <a href="{{ url_for('create_webinar') }}" class="btn-action">Create New Webinar</a>
+        <a href="{{ url_for('courses') }}" class="btn-action">View Courses</a>
+        <a href="{{ url_for('webinars') }}" class="btn-action">View Webinars</a>
+        <a href="{{ url_for('resources') }}" class="btn-action">View Resources</a>
+    </div>
+</div>
+{% endblock %}
