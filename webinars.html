@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="webinars-container">
+    <h2>Webinars</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Enroll Form -->
+    <div class="enroll-section">
+        <h3>Enroll in a Webinar</h3>
+        <form method="POST">
+            <label for="webinar">Select a Webinar:</label>
+            <select id="webinar" name="webinar">
+                {% for webinar in webinars %}
+                    <option value="{{ webinar.title }}">{{ webinar.title }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-submit">Enroll</button>
+        </form>
+    </div>
+
+    <!-- User Created Webinars -->
+    <div class="user-webinars">
+        <h3>Your Created Webinars</h3>
+        <div class="webinar-card-container">
+        {% for webinar in user_webinars %}
+            <div class="webinar-card">
+                <h4>{{ webinar[1] }}</h4>
+                <p><strong>Description:</strong> {{ webinar[2] }}</p>
+                <p><strong>Schedule:</strong> {{ webinar[3] }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
